@@ -3,9 +3,9 @@ Go
 ## editor
 neovim(lazyvim)
 ## result
-6/6
+8/8
 ### solved
-1-1,2 2-1,2 3-1,2
+1-1,2 2-1,2 3-1,2 4-1,2
 ### unsolved
 
 ## structure
