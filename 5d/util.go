@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 	"unicode"
 )
@@ -82,4 +83,25 @@ func isThisWord(str string, index int, searchWord string) bool {
 		}
 	}
 	return hereItIs
+}
+
+/**
+* use if the space is just one between numbers
+ */
+func getNums(line string, firstIndex int) []int {
+	nums := make([]int, 0)
+	curIndex := firstIndex
+
+	for {
+		numStr := getSequenceNumber(line, curIndex)
+		num, _ := strconv.Atoi(numStr)
+		nums = append(nums, num)
+
+		curIndex += len(numStr) + 1
+		if curIndex >= len(line) {
+			break
+		}
+	}
+
+	return nums
 }
