@@ -105,3 +105,8 @@ func getNums(line string, firstIndex int) []int {
 
 	return nums
 }
+
+func atoiEX(str string) int {
+	num, _ := strconv.Atoi(str)
+	return num
+}
