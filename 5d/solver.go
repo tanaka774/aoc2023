@@ -13,7 +13,7 @@ const (
 
 func main() {
 	// ans1() // ans:322500873
-	ans2() // ans:
+	ans2() // ans:108956227
 }
 
 func ans1() {
@@ -58,8 +58,8 @@ func ans1() {
 }
 
 func ans2() {
-	// file, scanner := getScanner("./example.txt")
-	file, scanner := getScanner("./input.txt")
+	file, scanner := getScanner("./example.txt")
+	// file, scanner := getScanner("./input.txt")
 	defer file.Close()
 
 	seeds := make([]int, 0)
