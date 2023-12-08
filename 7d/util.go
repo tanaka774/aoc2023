@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"slices"
 	"strconv"
 	"strings"
 	"unicode"
@@ -109,4 +110,10 @@ func getNums(line string, firstIndex int) []int {
 func atoiEX(str string) int {
 	num, _ := strconv.Atoi(str)
 	return num
+}
+
+func sortString(str string) string {
+	runes := []rune(str)
+	slices.Sort(runes)
+	return string(runes)
 }
