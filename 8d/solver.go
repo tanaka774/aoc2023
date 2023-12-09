@@ -89,6 +89,7 @@ func ans2() {
 	history := make([][]string, len(curs))
 	loopCount_deb := make([][]int, len(curs))
 	loopEnd := false
+Loop:
 	for {
 		for _, ope := range opes {
 			for curIndex, cur := range curs {
@@ -109,12 +110,12 @@ func ans2() {
 				return len(i) == 3
 			})
 			if loopEnd {
-				break
+				break Loop
 			}
 		}
-		if loopEnd {
-			break
-		}
+		// if loopEnd {
+		// 	break
+		// }
 	}
 	loopCount := make([]int64, len(curs))
 	for i := range loopCount_deb {
