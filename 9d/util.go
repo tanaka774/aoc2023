@@ -42,6 +42,29 @@ func getSequenceNumber(str string, startIndex int) string {
 	return num
 }
 
+func getSequenceNumberWithMinus(str string, startIndex int) string {
+	num := ""
+	for {
+		if startIndex > len(str)-1 {
+			break
+		}
+
+		if str[startIndex] == '-' {
+			num += string(str[startIndex])
+			startIndex++
+		}
+
+		if unicode.IsDigit(rune(str[startIndex])) {
+			num += fmt.Sprint(getNumber(str[startIndex]))
+		} else {
+			break
+		}
+		startIndex++
+	}
+
+	return num
+}
+
 func getNumber(b byte) int {
 	return int(b) - '0'
 }
@@ -96,6 +119,27 @@ func getNums(line string, firstIndex int) []int {
 
 	for {
 		numStr := getSequenceNumber(line, curIndex)
+		num, _ := strconv.Atoi(numStr)
+		nums = append(nums, num)
+
+		curIndex += len(numStr) + 1
+		if curIndex >= len(line) {
+			break
+		}
+	}
+
+	return nums
+}
+
+/**
+* use if the space is just one between numbers
+ */
+func getNumsWithMinus(line string, firstIndex int) []int {
+	nums := make([]int, 0)
+	curIndex := firstIndex
+
+	for {
+		numStr := getSequenceNumberWithMinus(line, curIndex)
 		num, _ := strconv.Atoi(numStr)
 		nums = append(nums, num)
 
