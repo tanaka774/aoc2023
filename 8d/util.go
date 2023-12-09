@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math/big"
 	"os"
 	"slices"
 	"strconv"
@@ -116,4 +117,50 @@ func sortString(str string) string {
 	runes := []rune(str)
 	slices.Sort(runes)
 	return string(runes)
+}
+
+func every[T any](arr []T, fn func(T) bool) bool {
+	for _, element := range arr {
+		if !fn(element) {
+			return false
+		}
+	}
+	return true
+}
+
+// func calcGCD(nums ...int64) *big.Int {
+func calcGCD(nums []int64) *big.Int {
+	if len(nums) == 0 {
+		return big.NewInt(0)
+	}
+	gcd := big.NewInt(nums[0])
+
+	for _, num := range nums[1:] {
+		gcd = gcd.GCD(nil, nil, gcd, big.NewInt(num))
+	}
+
+	return gcd
+}
+
+// type temp interface {
+//   []int64 | ...int64
+// }
+
+func calcLCM(nums []int64) *big.Int {
+	if len(nums) == 0 || nums[0] == 0 {
+		return big.NewInt(0)
+	}
+	lcm := big.NewInt(nums[0])
+	for i := 1; i < len(nums); i++ {
+		if nums[i] == 0 {
+			return big.NewInt(0)
+		}
+
+		bigNum := big.NewInt(nums[i])
+
+		absProduct := new(big.Int).Abs(new(big.Int).Mul(lcm, bigNum))
+		gcd := calcGCD([]int64{lcm.Int64(), nums[i]})
+		lcm = new(big.Int).Div(absProduct, gcd)
+	}
+	return lcm
 }
